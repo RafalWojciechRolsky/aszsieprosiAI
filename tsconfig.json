@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "moduleResolution": "NodeNext",
+    "sourceMap": true,
+
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "module": "NodeNext",
+    "target": "es2017"
+  },
+  "include": ["src/**/*", "test.js"]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "openassistant",
+  "version": "1.0.0",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "node dist/app.js",
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@langchain/anthropic": "^0.3.3",
+    "@langchain/core": "^0.3.3",
+    "@langchain/openai": "^0.3.2",
+    "dotenv": "^16.4.5",
+    "langchain": "^0.3.2",
+    "playwright": "^1.47.2"
+  },
+  "type": "module"
+}
