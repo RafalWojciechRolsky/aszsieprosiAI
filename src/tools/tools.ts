@@ -1,7 +1,7 @@
 export const tools = [
   {
     name: "extractWebContent",
-    description: "Extract content from a webpage",
+    description: "Extract content from multiple elements on a webpage",
     parameters: {
       type: "object",
       properties: {
@@ -11,7 +11,8 @@ export const tools = [
         },
         selector: {
           type: "string",
-          description: "CSS selector to extract content",
+          description:
+            "CSS selector to extract content (can match multiple elements)",
         },
       },
       required: ["url", "selector"],
