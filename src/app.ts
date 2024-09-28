@@ -8,6 +8,7 @@ import {
 import { model } from "./config/configLLM.js";
 import { AIMessage, BaseMessage, HumanMessage } from "@langchain/core/messages";
 import readline from "readline";
+import { extractWebContent } from "./tools/extractWebContent.js";
 
 type ChainInput = {
   chat_history: BaseMessage[];
@@ -33,6 +34,17 @@ const chain = RunnableSequence.from<ChainInput>([
   }),
   prompt,
   model,
+  async (response) => {
+    if (response.additional_kwargs.function_call) {
+      const functionCall = response.additional_kwargs.function_call;
+      if (functionCall.name === "extractWebContent") {
+        const { url, selector } = JSON.parse(functionCall.arguments);
+        const result = await extractWebContent(url, selector);
+        return new AIMessage(`Extracted content: ${result}`);
+      }
+    }
+    return response;
+  },
 ]);
 
 const withMessageHistory = new RunnableWithMessageHistory({
