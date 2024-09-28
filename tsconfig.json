@@ -13,5 +13,5 @@
     "module": "NodeNext",
     "target": "es2017"
   },
-  "include": ["src/**/*", "test.js"]
+  "include": ["src/**/*"]
 }

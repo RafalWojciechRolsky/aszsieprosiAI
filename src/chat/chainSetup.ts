@@ -6,12 +6,10 @@ import {
 import { model } from "../config/configLLM.js";
 import { ChainInput } from "../types/chainTypes.js";
 import { handleFunctionCall } from "../tools/functionHandler.js";
+import { systemPrompt } from "../config/systemPrompt.js";
 
 const prompt = ChatPromptTemplate.fromMessages([
-  [
-    "system",
-    `You are a helpful assistant who remembers all details the user shares with you.`,
-  ],
+  ["system", systemPrompt],
   ["placeholder", "{chat_history}"],
   ["human", "{input}"],
 ]);
