@@ -15,9 +15,11 @@
     "@langchain/anthropic": "^0.3.3",
     "@langchain/core": "^0.3.3",
     "@langchain/openai": "^0.3.2",
+    "@types/turndown": "^5.0.5",
     "dotenv": "^16.4.5",
     "langchain": "^0.3.2",
     "playwright": "^1.47.2",
+    "turndown": "^7.2.0",
     "youtube-dl-exec": "^3.0.9"
   },
   "type": "commonjs"
