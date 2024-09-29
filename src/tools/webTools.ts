@@ -144,7 +144,8 @@ export const webTools = {
       // Czekamy na pojawienie się albo tabeli wyników, albo komunikatu o braku wyników
       const result = await Promise.race([
         page.waitForSelector(
-          "#p-panel-5-content > div > div > ds-table > div > p-table > div > div > table > tbody > tr > td:nth-child(2)",
+          "#p-panel-5-content > div > div > ds-table > div > p-table > div > div > table > tbody > tr > td:nth-child(2) > div.ds-column-value",
+
           {
             timeout: 1000,
           }
@@ -153,7 +154,7 @@ export const webTools = {
         page.waitForSelector(
           "#p-panel-5-content > div > div > ds-table > div > p-table > div > div > table > tbody > tr > td",
           {
-            timeout: 1000,
+            timeout: 2000,
           }
         ),
         new Promise((resolve) => setTimeout(() => resolve("timeout"), 1000)),
@@ -184,7 +185,7 @@ export const webTools = {
 
       // Jeśli nie ma komunikatu o braku wyników, próbujemy pobrać dane z tabeli
       const resultText = await page.textContent(
-        "#p-panel-5-content > div > div > ds-table > div > p-table > div > div > table > tbody > tr > td:nth-child(2)"
+        "#p-panel-5-content > div > div > ds-table > div > p-table > div > div > table > tbody > tr > td:nth-child(2) > div.ds-column-value"
       );
 
       if (resultText) {
