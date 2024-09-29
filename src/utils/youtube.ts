@@ -1,9 +1,9 @@
 const youtubedl = require("youtube-dl-exec");
 
-export async function downloadYouTubeAudio(
+export const downloadYouTubeAudio = async (
   url: string,
   output: string
-): Promise<string> {
+): Promise<string> => {
   try {
     const result = await youtubedl(url, {
       extractAudio: true,
@@ -17,4 +17,4 @@ export async function downloadYouTubeAudio(
       error instanceof Error ? error.message : String(error)
     }`;
   }
-}
+};
