@@ -160,4 +160,27 @@ export const tools = [
       required: ["readerUrl"],
     },
   },
+  {
+    name: "navigateToUrl",
+    description: "Navigate to a specific URL without closing the browser",
+    parameters: {
+      type: "object",
+      properties: {
+        url: {
+          type: "string",
+          description: "The URL to navigate to",
+        },
+      },
+      required: ["url"],
+    },
+  },
+  {
+    name: "closeBrowser",
+    description: "Close the browser and end the session",
+    parameters: {
+      type: "object",
+      properties: {},
+      required: [],
+    },
+  },
 ];

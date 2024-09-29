@@ -3,10 +3,11 @@ import { webTools } from "./webTools.js";
 
 export const extractWebContent = async (url: string, selector: string) => {
   try {
-    await webTools.init();
+    if (!webTools.isBrowserInitialized()) {
+      await webTools.init();
+    }
     await webTools.navigateTo(url);
     const result = await webTools.extractMultipleElements(selector);
-    await webTools.close();
 
     if (result.length > 0) {
       const markdown = cleanHtml(result.filter(Boolean).join("\n"));

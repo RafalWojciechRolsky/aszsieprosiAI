@@ -1,6 +1,7 @@
 import { AIMessage } from "@langchain/core/messages";
 import { extractWebContent } from "./extractWebContent.js";
 import { downloadYouTubeAudio } from "../utils/youtube.js";
+import { navigateToUrl, closeBrowser } from "./webTools.js";
 
 export const handleFunctionCall = async (response: any) => {
   if (response.additional_kwargs.function_call) {
@@ -64,6 +65,17 @@ export const handleFunctionCall = async (response: any) => {
         return new AIMessage(
           `Unread messages from ${unreadUrl}: [Message 1, Message 2]`
         );
+      }
+
+      case "navigateToUrl": {
+        const { url } = parsedArgs;
+        const result = await navigateToUrl(url);
+        return new AIMessage(result);
+      }
+
+      case "closeBrowser": {
+        await closeBrowser();
+        return new AIMessage("Browser closed successfully");
       }
 
       default:

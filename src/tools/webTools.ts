@@ -4,9 +4,17 @@ let browser: Browser | null = null;
 let page: Page | null = null;
 
 export const webTools = {
+  isBrowserInitialized: () => {
+    return browser !== null && page !== null;
+  },
+
   init: async () => {
-    browser = await chromium.launch({ headless: false });
-    page = await browser.newPage();
+    if (!browser) {
+      browser = await chromium.launch({ headless: false });
+    }
+    if (!page) {
+      page = await browser.newPage();
+    }
   },
 
   navigateTo: async (url: string) => {
@@ -17,7 +25,7 @@ export const webTools = {
   extractText: async (selector: string) => {
     if (!page) throw new Error("Browser not initialized");
     const element = await page.$(selector);
-    return element ? element.textContent() : null;
+    return element ? await element.textContent() : null;
   },
 
   fillForm: async (selector: string, value: string) => {
@@ -49,4 +57,31 @@ export const webTools = {
       attribute
     );
   },
+};
+
+export const navigateToUrl = async (url: string): Promise<string> => {
+  try {
+    if (!browser) {
+      browser = await chromium.launch({ headless: false });
+    }
+    if (!page) {
+      page = await browser.newPage();
+    }
+    await page.goto(url, { waitUntil: "networkidle" });
+    return `Successfully navigated to ${url}`;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Error navigating to URL:", error);
+      return `Error navigating to ${url}: ${error.message}`;
+    }
+    return `Unknown error navigating to ${url}`;
+  }
+};
+
+export const closeBrowser = async (): Promise<void> => {
+  if (browser) {
+    await browser.close();
+    browser = null;
+    page = null;
+  }
 };
