@@ -251,4 +251,27 @@ export const tools = [
       required: [],
     },
   },
+  {
+    name: "checkCompanyExistence",
+    description: "Sprawdź istnienie przedsiębiorcy w KRS",
+    parameters: {
+      type: "object",
+      properties: {
+        nip: {
+          type: "string",
+          description: "NIP przedsiębiorcy",
+        },
+      },
+      required: ["nip"],
+    },
+  },
+  {
+    name: "refreshPage",
+    description: "Odświeża aktualnie otwartą stronę w przeglądarce",
+    parameters: {
+      type: "object",
+      properties: {},
+      required: [],
+    },
+  },
 ];

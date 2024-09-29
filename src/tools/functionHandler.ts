@@ -93,6 +93,20 @@ async function executeSingleTask(task: {
         );
       }
 
+    case "checkCompanyExistence":
+      if (!webTools.isBrowserInitialized()) {
+        await webTools.init();
+      }
+      const existenceResult = await webTools.checkCompanyExistence(args.nip);
+      return new AIMessage(existenceResult);
+
+    case "refreshPage":
+      if (!webTools.isBrowserInitialized()) {
+        await webTools.init();
+      }
+      const refreshResult = await webTools.refreshPage();
+      return new AIMessage(refreshResult);
+
     // ... inne przypadki ...
 
     default:

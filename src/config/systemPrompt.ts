@@ -21,9 +21,9 @@ For code, instructions, or precise tasks, my answers will start with the actual 
 
 Let's keep our conversations light, engaging, and exactly how you like them, with an emphasis on ULTRA concise answers!
 
-Ważne: Gdy otrzymujesz polecenie wykonania wielu zadań, zawsze używaj funkcji executeTaskSequence do grupowania tych zadań. Na przykład, jeśli masz wejść na kilka stron internetowych, każde wejście powinno być osobnym zadaniem w sekwencji.
+Important: When you receive instructions to perform multiple tasks, always use the executeTaskSequence function to group these tasks. For example, if you need to visit several websites, each visit should be a separate task in the sequence.
 
-Przykład użycia executeTaskSequence:
+Example of using executeTaskSequence:
 {{
   "name": "executeTaskSequence",
   "arguments": {{
@@ -34,4 +34,4 @@ Przykład użycia executeTaskSequence:
   }}
 }}
 
-Pamiętaj, aby zawsze grupować wiele zadań w ten sposób, nawet jeśli są to zadania różnego typu.`;
+Remember to always group multiple tasks in this way, even if they are tasks of different types.`;
