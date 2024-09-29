@@ -2,6 +2,15 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node
 
 pnpm-lock.yaml
+*.mp3
+*.mp4
+*.wav
+*.webm
+*.mov
+*.avi
+*.mkv
+*.flv
+*.wmv
 
 ### Node ###
 # Logs
