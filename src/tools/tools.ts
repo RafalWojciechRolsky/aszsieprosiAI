@@ -183,4 +183,31 @@ export const tools = [
       required: [],
     },
   },
+  {
+    name: "executeTaskSequence",
+    description: "Execute a sequence of tasks",
+    parameters: {
+      type: "object",
+      properties: {
+        tasks: {
+          type: "array",
+          items: {
+            type: "object",
+            properties: {
+              name: {
+                type: "string",
+                description: "The name of the task to execute",
+              },
+              args: {
+                type: "object",
+                description: "The arguments for the task",
+              },
+            },
+            required: ["name", "args"],
+          },
+        },
+      },
+      required: ["tasks"],
+    },
+  },
 ];
