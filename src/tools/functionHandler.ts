@@ -46,9 +46,56 @@ async function executeSingleTask(task: {
       await closeBrowser();
       return new AIMessage("Browser closed successfully");
 
+    case "checkElementExists":
+      if (!webTools.isBrowserInitialized()) {
+        await webTools.init();
+      }
+      const exists = await webTools.checkElementExists(args.selector);
+      return new AIMessage(
+        `Element ${args.selector} ${
+          exists ? "istnieje" : "nie istnieje"
+        } na stronie.`
+      );
+
+    case "checkLoginElementExists":
+      if (!webTools.isBrowserInitialized()) {
+        await webTools.init();
+      }
+      const loginElement = await webTools.findLoginElement();
+      return new AIMessage(
+        loginElement
+          ? `Znaleziono element logowania: ${loginElement}`
+          : "Nie znaleziono elementu logowania na stronie."
+      );
+
+    case "getLoginElementSelector":
+      if (!webTools.isBrowserInitialized()) {
+        await webTools.init();
+      }
+      try {
+        const selector = await webTools.getLoginElementSelector();
+        return new AIMessage(`Selektor elementu logowania: ${selector}`);
+      } catch (error) {
+        return new AIMessage("Nie znaleziono elementu logowania na stronie.");
+      }
+
+    case "clickLoginElement":
+      if (!webTools.isBrowserInitialized()) {
+        await webTools.init();
+      }
+      try {
+        const result = await webTools.clickLoginElement();
+        return new AIMessage(result);
+      } catch (error) {
+        return new AIMessage(
+          "Nie udało się kliknąć elementu logowania: " +
+            (error as Error).message
+        );
+      }
+
     // ... inne przypadki ...
 
     default:
-      return new AIMessage(`Unknown function: ${name}`);
+      return new AIMessage(`Nieznana funkcja: ${name}`);
   }
 }

@@ -210,4 +210,45 @@ export const tools = [
       required: ["tasks"],
     },
   },
+  {
+    name: "checkElementExists",
+    description: "Check if a specific element exists on the current page",
+    parameters: {
+      type: "object",
+      properties: {
+        selector: {
+          type: "string",
+          description: "CSS selector of the element to check",
+        },
+      },
+      required: ["selector"],
+    },
+  },
+  {
+    name: "checkLoginElementExists",
+    description: "Check if a login element exists on the current page",
+    parameters: {
+      type: "object",
+      properties: {},
+      required: [],
+    },
+  },
+  {
+    name: "getLoginElementSelector",
+    description: "Get the selector of the login element on the current page",
+    parameters: {
+      type: "object",
+      properties: {},
+      required: [],
+    },
+  },
+  {
+    name: "clickLoginElement",
+    description: "Click the login element on the current page",
+    parameters: {
+      type: "object",
+      properties: {},
+      required: [],
+    },
+  },
 ];

@@ -57,6 +57,51 @@ export const webTools = {
       attribute
     );
   },
+
+  checkElementExists: async (selector: string): Promise<boolean> => {
+    if (!page) throw new Error("Browser not initialized");
+    return await page.isVisible(selector);
+  },
+
+  findLoginElement: async (): Promise<string | null> => {
+    if (!page) throw new Error("Browser not initialized");
+    const selectors = [
+      'button:has-text("Zaloguj")',
+      'button:has-text("Login")',
+      'button:has-text("Sign in")',
+      'a:has-text("Zaloguj")',
+      'a:has-text("Login")',
+      'a:has-text("Sign in")',
+      'input[type="submit"][value="Zaloguj"]',
+      'input[type="submit"][value="Login"]',
+      'input[type="submit"][value="Sign in"]',
+    ];
+
+    for (const selector of selectors) {
+      if (await page.isVisible(selector)) {
+        return selector;
+      }
+    }
+    return null;
+  },
+
+  getLoginElementSelector: async (): Promise<string> => {
+    const loginElement = await webTools.findLoginElement();
+    if (loginElement) {
+      return loginElement;
+    }
+    throw new Error("Nie znaleziono elementu logowania");
+  },
+
+  clickLoginElement: async (): Promise<string> => {
+    if (!page) throw new Error("Browser not initialized");
+    const loginSelector = await webTools.findLoginElement();
+    if (loginSelector) {
+      await page.click(loginSelector);
+      return `Kliknięto element logowania: ${loginSelector}`;
+    }
+    throw new Error("Nie znaleziono elementu logowania do kliknięcia");
+  },
 };
 
 export const navigateToUrl = async (url: string): Promise<string> => {
